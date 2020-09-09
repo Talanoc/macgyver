@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Sep  3 00:02:47 2020
+Created on Mon Sep  7 09:25:49 2020
 
 @author: 33633
 """
+
 import pygame
 import random
 from pygame.locals import (K_UP,K_DOWN,K_RIGHT,K_LEFT,K_ESCAPE,KEYDOWN,QUIT,KEYUP)
@@ -28,7 +29,14 @@ wall_display=[]
 position_objets=[]
 final=[]
 
-
+def mouvement():
+    position_macgyver=position_macgyver-('a')
+            
+    if position_macgyver in floor_display:
+        pass
+    else:
+        position_macgyver=position_macgyver+('a')
+    
 
 #lecture du fichier txt
 fichier_read = open ("table labyrinthe.txt",'r')
@@ -144,13 +152,14 @@ while continuer:
         pos_precedent=position_macgyver
 #  detection of pressing of the up key      
         if event.type == pygame.KEYUP and event.key==K_UP:
+            a=15
+            mouvement()
+            #position_macgyver=position_macgyver-15
             
-            position_macgyver=position_macgyver-15
-            
-            if position_macgyver in floor_display:
-                pass
-            else:
-                position_macgyver=position_macgyver+15
+            #if position_macgyver in floor_display:
+            #    pass
+            #else:
+                #position_macgyver=position_macgyver+15
 #detection of pressing of the down key                
         elif event.type == pygame.KEYUP and event.key==K_DOWN:
             
@@ -214,16 +223,13 @@ while continuer:
         else:
             pass
 
-
-        if position_macgyver==position_gardien:
-            
+        if position_macgyver==position_gardien :
             final = list(set(final))
-            if len(final)==3 :
-                screen.blit(victoire , ( 100, 100 )) 
+            if len(final)==3:
+                screen.blit(victoire , ( 100, 100 ))
             else:
-                screen.blit(rip , ( 100, 100 ))  
-            continuer  
-                
-        pygame.display.flip()
-       
+                screen.blit(rip , ( 100, 100 ))
+              
+    pygame.display.flip()
+          
 pygame.quit()
