@@ -45,9 +45,9 @@ rip=pygame.transform.scale(rip,(600,600))
 
     
 
-load_sprite()
 
-datas = pd.read_excel ("C:/Users/33633/desktop/macgyver/labyrinthe.xlsx","labyrinthe")  #datas est un dataframe
+
+datas = pd.read_excel ("C:/Users/33633/desktop/macgyver/ressource/labyrinthe.xlsx","labyrinthe2")  #datas est un dataframe
 datas = datas.values.tolist()   #datas est une liste de liste
 for x in range(15):
     #x=x-1

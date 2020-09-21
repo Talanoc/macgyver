@@ -19,6 +19,8 @@ from pandas import read_excel
 import pygame
 import random
 from pygame.locals import (K_UP,K_DOWN,K_RIGHT,K_LEFT,K_ESCAPE,KEYDOWN,QUIT,KEYUP)
+from macgyver_move import Move
+
      
 # initialisation de pygame
 pygame.init()
@@ -41,7 +43,7 @@ final=[]
 df=[]
 
 
-datas = pandas.read_excel ("C:/Users/33633/desktop/macgyver/labyrinthe.xlsx","labyrinthe2")  #datas est un dataframe
+datas = pandas.read_excel ("C:/Users/33633/desktop/macgyver/ressource/labyrinthe.xlsx","labyrinthe")  #datas est un dataframe
 datas = datas.values.tolist()   #datas est une liste
 for x in range(15):
     x=x-1
@@ -162,40 +164,19 @@ while continuer:
         pos_precedent=position_macgyver
 # detection of pressing of the up key      
         if event.type == pygame.KEYUP and event.key==K_UP:
+            Move.move_up()
             
-            position_macgyver=position_macgyver-15
-            
-            if position_macgyver in floor_display:
-                pass
-            else:
-                position_macgyver=position_macgyver+15
 # detection of pressing of the down key                
         elif event.type == pygame.KEYUP and event.key==K_DOWN:
+            Move.move_down()
             
-            position_macgyver=position_macgyver+15
-           
-            if position_macgyver in floor_display:
-                pass
-            else:
-                position_macgyver=position_macgyver-15 
 # detection of pressing of the right key                
         elif event.type == pygame.KEYUP and event.key==K_RIGHT:
+            Move.move_right()
             
-            position_macgyver=position_macgyver+1
-                       
-            if position_macgyver in floor_display :
-                pass
-            else:
-                position_macgyver=position_macgyver-1
 # detection of pressing of the left key               
         elif event.type == pygame.KEYUP and event.key==K_LEFT:
-            
-            position_macgyver=position_macgyver-1            
-            
-            if position_macgyver in floor_display:
-                pass
-            else:
-                position_macgyver=position_macgyver+1
+            Move.move_left()
                 
 # detection of pressing of the escape key                
         elif event.type == pygame.KEYUP and event.key==K_ESCAPE:
