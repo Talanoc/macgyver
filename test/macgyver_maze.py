@@ -20,30 +20,33 @@ position_macgyver=0
 pygame.init
 
 
-# chargement des decors 
-wall =pygame.image.load('ressource/wall.jpg')
-floor =pygame.image.load('ressource/floor.jpg')
-needle=pygame.image.load('ressource/aiguille.png')
-syringe=pygame.image.load('ressource/seringue.png')
-ether=pygame.image.load('ressource/ether.png')
-macgyver=pygame.image.load('ressource/MacGyver.png')
-gardien=pygame.image.load('ressource/Gardien.png')
-victoire=pygame.image.load('ressource/victoire.jpg')
-rip=pygame.image.load('ressource/rip.jpg')
-
-# mise en forme des sprites
-
-gardien=pygame.transform.scale(gardien,(resize_decor,resize_decor))
-ether=pygame.transform.scale(ether,(resize_decor,resize_decor))
-syringe=pygame.transform.scale(syringe,(resize_decor,resize_decor))
-needle=pygame.transform.scale(needle,(resize_decor,resize_decor))
-macgyver=pygame.transform.scale(macgyver,(resize_decor,resize_decor))
-wall=pygame.transform.scale(wall,(resize_decor,resize_decor))
-floor = pygame.transform.scale(floor,(resize_decor,resize_decor))
-victoire=pygame.transform.scale(victoire,(600,600))
-rip=pygame.transform.scale(rip,(600,600))
-
     
+    # chargement des decors 
+    wall =pygame.image.load('ressource/wall.jpg')
+    floor =pygame.image.load('ressource/floor.jpg')
+    needle=pygame.image.load('ressource/aiguille.png')
+    syringe=pygame.image.load('ressource/seringue.png')
+    ether=pygame.image.load('ressource/ether.png')
+    macgyver=pygame.image.load('ressource/MacGyver.png')
+    gardien=pygame.image.load('ressource/Gardien.png')
+    victoire=pygame.image.load('ressource/victoire.jpg')
+    rip=pygame.image.load('ressource/rip.jpg')
+    
+    # mise en forme des sprites
+    
+    gardien=pygame.transform.scale(gardien,(resize_decor,resize_decor))
+    ether=pygame.transform.scale(ether,(resize_decor,resize_decor))
+    syringe=pygame.transform.scale(syringe,(resize_decor,resize_decor))
+    needle=pygame.transform.scale(needle,(resize_decor,resize_decor))
+    macgyver=pygame.transform.scale(macgyver,(resize_decor,resize_decor))
+    wall=pygame.transform.scale(wall,(resize_decor,resize_decor))
+    floor = pygame.transform.scale(floor,(resize_decor,resize_decor))
+    victoire=pygame.transform.scale(victoire,(600,600))
+    rip=pygame.transform.scale(rip,(600,600))
+    
+    
+
+sprite_load()    
 
 
 
