@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 12 10:40:12 2020
-
+Created on Wed Oct 14 10:49:16 2020
 @author: 33633
 """
-import pygame
-from pygame.locals import (K_UP,K_DOWN,K_RIGHT,K_LEFT,K_ESCAPE,KEYDOWN,QUIT,KEYUP)
-from constants import (needle,syringe,ether,macgyver,gardien,wall,victoire,rip,maze_name,size,
-                       resize_decor,floor,win,old_position,ether_in_bag,needle_in_bag,syringe_in_bag,win)
+
+
 import pandas
-import math
 import random
+import math
+import pygame
+from constants import (needle,syringe,ether,macgyver,gardien,wall,victoire,rip,maze_name,floor,size,resize_decor)
+
 
 class Maze:
-    
-    screen=pygame.display.set_mode((size,size))
-    
+           
     def __init__(self,maze_name):
-        
+                
         self.maze_name = maze_name
- 
-    
+
+     
     def load_maze(self):
         
         """
@@ -39,19 +37,19 @@ class Maze:
             wall_a=wall_a + datas[x]
             self.wall_display = [x for x in wall_a if not math.isnan(x)]        
  
-       
+      
     def extract_position_heroes(self): 
         
         """
         create position _macgyver & _guard
         __entree:wall_display
-        __x compris entre 226 et 1255 =position_macgyver
+        __x compris entre 226 et 1225 =position_macgyver
         __x superieur à 2000 =position_gardien
         __sortie:self.position_macgyver et self.position_gardien (self utilisation en dehors de la methode)
         
         """        
         for x in self.wall_display:
-            if x >225 and x<1255:
+            if x >1001 and x<1225:
                 self.position_macgyver =int(x-1000)
             elif x>2000:
                 self.position_gardien=int(x-2000)         
@@ -107,7 +105,7 @@ class Maze:
         self.data_maze[self.position_macgyver-1][4]="macgyver"
         self.data_maze[self.position_gardien-1][3]=gardien
         self.data_maze[self.position_gardien-1][4]="gardien"
-        return self.data_maze
+       
  
        
     def maze_display (self): 
@@ -124,95 +122,15 @@ class Maze:
         # changement d'icone
         icon = pygame.image.load('ressource/MacGyver.png')#.convert()
         pygame.display.set_icon(icon)
-             
+    
         for case,x,y,sprite,name in self.data_maze:
             screen.blit( sprite , ( y , x ))
             
             
     def maze_construct(self):
         
-        Maze.load_maze(self)
-        Maze.extract_position_heroes(self)
-        Maze.maze_generate(self)
-        Maze.generate_integrate_items(self)
-        Maze.maze_display(self)
-        
-        
-class Macgyver:
-    
-    screen=pygame.display.set_mode((size,size))
-    
-    def __init__(self,maze):
-       
-        self.position_macgyver=maze.position_macgyver
-        self.maze=maze
-        self.old_position=old_position       
-        self.needle_in_bag = needle_in_bag
-        self.syringe_in_bag = syringe_in_bag
-        self.ether_in_bag = ether_in_bag
-        
-    def move_up(self):
-       self.move(-15)
-       return self.position_macgyver
-        
-    def move_down(self):
-        self.move(15)
-        return self.position_macgyver
-    
-    def move_right(self):
-        self.move(1)
-        return self.position_macgyver 
-    
-    def move_left(self):
-        self.move(-1)                      
-        return self.position_macgyver
-     
-    def move(self,step_value):
-        
-        self.old_position=self.position_macgyver
-        self.position_macgyver += int(step_value)
-        
-        if self.maze.data_maze [self.position_macgyver-1][4] == 'wall':             
-             self.position_macgyver -= int(step_value)                                    
-
-
-    def macgyver_move(self):
-       
-        case1,x1,y1,sprite1,name=self.maze.data_maze[self.old_position-1]
-        case,x,y,sprite,name=self.maze.data_maze[self.position_macgyver-1]
-        self.screen.blit(wall , ( 700 , 700 ))
-        self.screen.blit(floor , ( y1 , x1 ))
-        self.screen.blit(macgyver , ( y , x ))
-        
-        
-    def macgyver_win(self):
-                       
-        if self.maze.data_maze[self.position_macgyver-1][4]== 'gardien' :
-            if self.win == True:
-                self.screen.blit (victoire , ( 100, 100))
-                        
-            else:
-                self.screen.blit(rip , ( 100, 100))
-            
-    
-    def item_detect(self): 
-                
-        if self.maze.data_maze[self.position_macgyver-1][4]== 'ether': 
-            
-            self.ether_in_bag = True
-            self.screen.blit(ether , ( 700, 50 ))
-                     
-               
-        if self.maze.data_maze[self.position_macgyver-1][4]== 'syringe':
-            
-            self.syringe_in_bag=True
-            self.screen.blit(syringe , ( 700, 100 ))
-            
-            
-        if self.maze.data_maze[self.position_macgyver-1][4]== 'needle':
-            
-            self.needle_in_bag=True
-            self.screen.blit(needle , ( 700, 150 ))
-             
-        self.win=self.needle_in_bag & self.syringe_in_bag & self.ether_in_bag   
-       
+        self.load_maze()
+        self.extract_position_heroes()
+        self.maze_generate()
+        self.generate_integrate_items()
+        self.maze_display()
